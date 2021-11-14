@@ -1,3 +1,22 @@
 .header{
+    width: 100%;
+    background-color: #0004;
+    padding: 12px 10px;
+    display: flex;
+    color: white;
     
+    .icon{
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    .name{
+        margin-left: 20px;
+        font-size: 1.2em;
+        font-weight: 600;
+    }
 }

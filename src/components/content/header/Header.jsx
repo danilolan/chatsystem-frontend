@@ -1,10 +1,13 @@
 import React from 'react';
 import './header.scss'
 
-function Header() {
+import defaultIcon from '../../../assets/user.png'
+
+function Header(props) {
     return ( 
         <div className="header">
-            Header
+            <div className="icon"><img src={defaultIcon} alt='loading...' /></div>
+            <div className="name">{props.name}</div>                      
         </div>
      );
 }

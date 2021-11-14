@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Navigator/>
       <div className="content">
-        <Header/>
+        <Header name="Exemplo"/>
         <Chat/>
       </div>
     </div>
