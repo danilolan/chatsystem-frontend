@@ -8,7 +8,7 @@ import Chat from '../content/chat/Chat'
 function App() {
 
   var user = {
-    name: 'danilo'
+    id: 1
   }
 
   return (
@@ -16,7 +16,7 @@ function App() {
       <Navigator/>
       <div className="content">
         <Header name="Exemplo"/>
-        <Chat userName={user.name}/>
+        <Chat userId={user.id}/>
       </div>
     </div>
   );
