@@ -1,25 +1,37 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import StoreContext from '../components/store/Context'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 import './login.scss'
+
+const serverURl = 'http://localhost:3001'
 
 function initialState(){
     return {user: '', password: ''}
 }
 
-function login({ user, password }){
-    if(user === 'admin'){  //VERIFICAO API
-        return {token: '123'}
-    }
-    else{
-        return {error: 'Usuário ou senha invalidos'}
-    }
 
-}
 function Login() {
     const [values, setValues] = useState(initialState)
+    const [localToken, setlocalToken] = useState(null)
     const { setToken } = useContext(StoreContext)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if(localToken) {
+            setToken(localToken)
+            return navigate('/')
+        }
+    }, [localToken])
+
+    function login(values){
+        axios.post(`${serverURl}/login`, values).then(resp => {
+            if(resp.data.token){
+                console.log(resp.data.token)
+                setlocalToken(resp.data.token)
+            }       
+        })
+    }
 
     function onChange(event){
         const {name, value} = event.target
@@ -31,11 +43,7 @@ function Login() {
 
     function onSubmit(event){       
         event.preventDefault()
-        const { token } = login(values)
-        if(token) {
-            setToken(token)
-            return navigate('/')
-        }
+        login(values)
         setValues(initialState)
     }
 
