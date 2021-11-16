@@ -6,30 +6,11 @@ import defaultThais from '../../assets/thais.png'
 import defaultPedro from '../../assets/pedro.png'
 import defaultMae from '../../assets/mae.png'
 
-function Navigator() {
-    const [userIcon, setUserIcon] = useState(getUserIcon())
-    const [userName, setUserName] = useState(getUserName())
+function Navigator(props) {
+    const user = props.user
     const [userStatus, setUserStatus] = useState('Online')
 
     const [chats, setChats] = useState(getChats())
-
-    function getUserIcon(){
-        try{
-            //REQUISIÇÃO
-        }
-        catch{
-            var icon = defaultIcon
-        }
-        
-        icon = defaultIcon
-        return icon
-    }
-
-    function getUserName(){
-        var name = 'Danilo Herculano'
-        //REQUISIÇÃO
-        return name
-    }
 
     function getChats(){
         var chats = []
@@ -66,9 +47,9 @@ function Navigator() {
     return ( 
         <div className="navigator">
             <div className="user">
-                <div className="icon"><img src={userIcon} alt="loading..." /></div>                
+                <div className="icon"><img src={defaultIcon} alt="loading..." /></div>                
                 <div className="log">
-                    <div className="name">{userName}</div>
+                    <div className="name">{user.user}</div>
                     <div className='status'>{userStatus}</div>
                 </div>
                 

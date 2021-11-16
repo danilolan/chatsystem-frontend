@@ -27,7 +27,6 @@ function Login() {
     function login(values){
         axios.post(`${serverURl}/login`, values).then(resp => {
             if(resp.data.token){
-                console.log(resp.data.token)
                 setlocalToken(resp.data.token)
             }       
         })

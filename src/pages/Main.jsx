@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {useEffect, useContext, useState} from 'react';
+import axios from 'axios';
+import StoreContext from '../components/store/Context'
 import './main.scss'
 
 import Navigator from '../components/navigator/Navigator'
 import Header from '../components/content/header/Header'
 import Chat from '../components/content/chat/Chat'
 
-function Main() {
+const serverURl = 'http://localhost:3001'
 
-    var user = {
-        id: 1
-      }
+function Main() {
+    const { token } = useContext(StoreContext)
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        axios.get(`${serverURl}/user?token=${token}`).then(resp =>{
+            setUser(resp.data)
+        })       
+    }, [])
     
     return ( 
         <div className="main">
-            <Navigator/>
+            <Navigator user={user}/>
             <div className="content">
                 <Header name="Exemplo"/>
                 <Chat userId={user.id}/>
